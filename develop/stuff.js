@@ -22,6 +22,7 @@ function quizTimer() {
             counter--;
             countdown.innerText = counter;
         }
+        // waiting on code to work, endGame()
         // else {
         //     alert(
         //         "Time is up!"
