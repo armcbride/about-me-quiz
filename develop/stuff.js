@@ -64,7 +64,7 @@ function quizTimer() {
 
 console.log(questionArray);
 
-//places first question on page
+//places first question on page and will loop through the rest of them
 function placeQuestion () {
 
     questionHere.innerHTML = questionArray[questionNumber].question;
@@ -84,6 +84,7 @@ function placeQuestion () {
 }
 placeQuestion ();
 
+//checks answer to user click (without the console.log it doesn't work for some reason. Also getting 'target is undefined' bit)
 function checkAnswers (event) {
     //targeting the text of the button
         var userSelect = event.target.innerText;
@@ -109,6 +110,7 @@ function checkAnswers (event) {
     answerButtons.innerHTML = "";
 
     if (questionNumber > 4) {
+        //need to define endGame() function
         endGame();
     }
     else{
@@ -121,3 +123,10 @@ function checkAnswers (event) {
     checkAnswers();
 
     // quizTimer();
+    
+//add function to relay message that game is over, and what your score is out of 5. 
+    function endGame() {
+
+
+
+    }
