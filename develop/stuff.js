@@ -1,6 +1,6 @@
  //global variables:
  var startButton = document.getElementById("start-button");
- var nextButton = document.getElementById("next");
+ var nextButton = document.getElementById("setScore");
  var questionHere= document.getElementById("question");
  var answerButtons= document.getElementById("answer-buttons");
  var questionNumber= 0;
@@ -12,7 +12,7 @@
  //timer variables
  var countdown = document.getElementById("countdown");
  var timerSet;
- var counter = 5;
+ var counter = 30;
 
   //set score to 0, set interval timer to 30 seconds
 //Timer:
@@ -23,11 +23,11 @@ function quizTimer() {
             countdown.innerText = counter;
         }
         // waiting on code to work, endGame()
-        // else {
-        //     alert(
-        //         "Time is up!"
-        //     )
-        // }
+        else {
+            alert(
+                "Time is up!"
+            )
+        }
         console.log(counter);
     }, 2000)
 }
@@ -64,8 +64,9 @@ function quizTimer() {
 
 console.log(questionArray);
 
-//places first question on page and will loop through the rest of them
+//places first question on page and will loop through the rest of them, once answered.
 function placeQuestion () {
+    quizTimer();
 
     questionHere.innerHTML = questionArray[questionNumber].question;
 
@@ -82,7 +83,12 @@ function placeQuestion () {
 
 
 }
-placeQuestion ();
+//creates quiz start button, 
+ var startBtn = document.createElement("button");
+ startBtn.innerText = "Start";
+ startBtn.setAttribute('class', 'btn btn-secondary');
+ startButton.appendChild(startBtn);
+ startBtn.addEventListener("click", placeQuestion);
 
 //checks answer to user click (without the console.log it doesn't work for some reason. Also getting 'target is undefined' bit)
 function checkAnswers (event) {
@@ -109,7 +115,7 @@ function checkAnswers (event) {
     questionHere.innerHTML = "";
     answerButtons.innerHTML = "";
 
-    if (questionNumber > 4) {
+    if (questionNumber == 4) {
         //need to define endGame() function
         endGame();
     }
@@ -120,13 +126,13 @@ function checkAnswers (event) {
 
     }
 
-    checkAnswers();
-
-    // quizTimer();
-    
 //add function to relay message that game is over, and what your score is out of 5. 
     function endGame() {
-
+alert("you got " + currectScore + " correct")
 
 
     }
+
+    //high scores
+
+    //write highscores to local storage (jSON whatever)

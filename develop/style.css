@@ -1,12 +1,13 @@
-* {
+ * {
     background-color: #9cdbca;
-}
+ } 
 .container-fluid {
     background-color: #9cdbca;
 }
 
 h2 {
     text-align: center;
+    background-color: #9cdbca;
 }
 .card-body {
 text-align: center;
@@ -15,13 +16,22 @@ right: 40%;
 background-color: #b4d9ca;
 }
 
+.btn-group,
+h5,
+h6,
+#answer-buttons {
+    background-color: #b4d9ca;
+}
+
 .footer {
-position: fixed;
+        position: fixed;
         text-align: center;
+        justify-self: center;
         bottom: 0;
-        left: 0;
+        left: 0%;
         width: 100%;
         background-color: #9cdbca;
         margin: 15px;
+        padding: 15px;
         font-size: 10px;
     }
