@@ -15,7 +15,7 @@
  var timerSet;
  var counter = 30;
 
-// //sets a Score Button
+// //sets a Score Button --next event
 //  var scoreButton = document.createElement("button");
 // scoreButton.innerHTML = "Set Score";
 // scoreButton.setAttribute('class', 'btn btn-secondary');
@@ -61,9 +61,6 @@
  //onclick the quiz will begin with the placeQuestion function
  startBtn.addEventListener("click", placeQuestion);
 
-console.log(questionArray);
-
-
 //FUNCTIONS:
 
   //set score to 0, set interval timer to 30 seconds
@@ -95,18 +92,14 @@ function placeQuestion () {
         btn.setAttribute('class', 'btn btn-secondary');
         answerButtons.appendChild(btn);
         btn.addEventListener("click", checkAnswers);
-
-        console.log(questionArray)
     }
-
 
 }
 
-//checks answer to user click (without the console.log it doesn't work for some reason. Also getting 'target is undefined' bit)
+//checks answer to user click
 function checkAnswers (event) {
     //targeting the text of the button
         var userSelect = event.target.innerText;
-    console.log(userSelect);
         var correctAnswer = questionArray[questionNumber].correctAnswer
     
         if (userSelect === correctAnswer)
@@ -139,9 +132,7 @@ function checkAnswers (event) {
     }
 
 //add function to relay message that game is over, and what your score is out of 5. 
-
-    function endGame() {
-        
+    function endGame() { 
         clearInterval(timerSet);
         counter = 30;
 scoreCounter.innerHTML= "You got " + currentScore + " correct.";
@@ -154,12 +145,11 @@ else {
 }
     }
 
-
-
+//up NEXT
     //high scores
-function toHighScores (){
+// function toHighScores (){
 
 
-}
+// }
     //write highscores to local storage (jSON whatever)
 
