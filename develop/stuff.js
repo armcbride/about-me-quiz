@@ -1,6 +1,6 @@
  //global variables:
  var startButton = document.getElementById("start-button");
- var nextButton = document.getElementById("setScore");
+ var setScore = document.getElementById("setScore");
  var questionHere= document.getElementById("question");
  var answerButtons= document.getElementById("answer-buttons");
  var questionNumber= 0;
@@ -15,60 +15,67 @@
  var timerSet;
  var counter = 30;
 
-  //set score to 0, set interval timer to 30 seconds
-//Timer:
-function quizTimer() {
-    setInterval(function () {
-        if (counter >= 1) {
-            counter--;
-            countdown.innerText = counter;
-        }
-        // waiting on code to work, endGame()
-        else {
-            alert(
-                "Time is up!"
-            )
-        }
-        console.log(counter);
-    }, 2000)
-}
-
  //questions and the answer array:
  var questionArray = [
-        {
-            question: 'Where was I born?',
-            answerChoices: ['Nashville, TN', 'Buffalo, NY', 'Salt Lake City, UT', 'Denver, CO'],
-            correctAnswer: 'Nashville, TN'
-        },
-        {
-            question: 'Where did I receive my Bachelors Degree?',
-            answerChoices: ['Ohio State University', 'Ole Miss', 'Vanderbilt University', 'Middle Tennessee State University'],
-            correctAnswer: 'Middle Tennessee State University'
-        },
-        {
-            question: 'What is my favorite snack?',
-            answerChoices: ['beef jerky', 'oreo cookies', 'veggies and dip', 'fruit'],
-            correctAnswer: 'oreo cookies'
-        },
-        {
-            question: 'What is my pets name and species?',
-            answerChoices: ['a dog named Jack', 'a fish named Kabob', 'A cat named Panther Lilly', 'a horse named Sabrina'],
-            correctAnswer: 'A cat named Panther Lilly'
-        },
-        {
-            question: 'How many siblings to I have?',
-            answerChoices: ['none', 'five', 'two', 'one'],
-            correctAnswer: 'two'
-        }
-    
-    ]
+    {
+        question: 'Where was I born?',
+        answerChoices: ['Nashville, TN', 'Buffalo, NY', 'Salt Lake City, UT', 'Denver, CO'],
+        correctAnswer: 'Nashville, TN'
+    },
+    {
+        question: 'Where did I receive my Bachelors Degree?',
+        answerChoices: ['Ohio State University', 'Ole Miss', 'Vanderbilt University', 'Middle Tennessee State University'],
+        correctAnswer: 'Middle Tennessee State University'
+    },
+    {
+        question: 'What is my favorite snack?',
+        answerChoices: ['beef jerky', 'oreo cookies', 'veggies and dip', 'fruit'],
+        correctAnswer: 'oreo cookies'
+    },
+    {
+        question: 'What is my pets name and species?',
+        answerChoices: ['a dog named Jack', 'a fish named Kabob', 'A cat named Panther Lilly', 'a horse named Sabrina'],
+        correctAnswer: 'A cat named Panther Lilly'
+    },
+    {
+        question: 'How many siblings to I have?',
+        answerChoices: ['none', 'five', 'two', 'one'],
+        correctAnswer: 'two'
+    }
+
+]
+
+ //creates quiz start button, 
+ var startBtn = document.createElement("button");
+ startBtn.innerText = "Start";
+ startBtn.setAttribute('class', 'btn btn-secondary');
+ startButton.appendChild(startBtn);
+
+ //onclick the quiz will begin with the placeQuestion function
+ startBtn.addEventListener("click", placeQuestion);
 
 console.log(questionArray);
 
+
+//FUNCTIONS:
+
+  //set score to 0, set interval timer to 30 seconds
+function quizTimer() {
+    timerSet = setInterval(()=>{
+      counter --
+      countdown.innerText = counter;
+  
+      // ends quiz if no time left, doesn't work, doesn't stop it at 0.
+      if (counter === 0) {
+        endGame();
+      };
+    },2000)
+};   
+            
 //places first question on page and will loop through the rest of them, once answered.
 function placeQuestion () {
     quizTimer();
-
+    rules.textContent = "";
     questionHere.innerHTML = questionArray[questionNumber].question;
 
 
@@ -84,14 +91,6 @@ function placeQuestion () {
 
 
 }
-//creates quiz start button, 
- var startBtn = document.createElement("button");
- startBtn.innerText = "Start";
- startBtn.setAttribute('class', 'btn btn-secondary');
- startButton.appendChild(startBtn);
-
- //onclick the quiz will begin with the placeQuestion function
- startBtn.addEventListener("click", placeQuestion);
 
 //checks answer to user click (without the console.log it doesn't work for some reason. Also getting 'target is undefined' bit)
 function checkAnswers (event) {
@@ -102,13 +101,13 @@ function checkAnswers (event) {
     
         if (userSelect === correctAnswer)
         {
-            alert("Correct!");
+            rules.textContent = "Correct!";
             currentScore++;
             counter += 10;
         }
     
         else {
-            alert("Wrong!");
+            rules.textContent = "Wrong!";
             counter -= 5;
         }
 
@@ -130,19 +129,33 @@ function checkAnswers (event) {
     }
 
 //add function to relay message that game is over, and what your score is out of 5. 
+
     function endGame() {
-        clearInterval(counter);
-alert("you got " + currentScore + " correct");
+        clearInterval(timerSet);
+        countdown.textContent = "";
+rules.innerHTML= "You got " + currentScore + " correct.";
+
 if (currentScore >= 3) {
-    alert ("You won!")
+    rules.innerText= "You won!";
 }
 else {
-    alert("You lose!")
+    rules.innerText="You lose!";
 }
 
 
     }
 
-    //high scores
 
+var scoreButton = document.createElement("button");
+scoreButton.textContent = "Set Score";
+scoreButton.setAttribute('class', 'btn btn-secondary');
+setScore.appendChild(scoreButton);
+scoreButton.addEventListener("click", toHighScores);
+
+    //high scores
+function toHighScores (){
+
+
+}
     //write highscores to local storage (jSON whatever)
+
