@@ -15,6 +15,13 @@
  var timerSet;
  var counter = 30;
 
+// //sets a Score Button
+//  var scoreButton = document.createElement("button");
+// scoreButton.innerHTML = "Set Score";
+// scoreButton.setAttribute('class', 'btn btn-secondary');
+// setScore.appendChild(scoreButton);
+// scoreButton.addEventListener("click", toHighScores);
+
  //questions and the answer array:
  var questionArray = [
     {
@@ -132,8 +139,8 @@ function checkAnswers (event) {
 
     function endGame() {
         clearInterval(timerSet);
-        countdown.textContent = "";
-rules.innerHTML= "You got " + currentScore + " correct.";
+        counter.textContent = "";
+scoreCounter.innerHTML= "You got " + currentScore + " correct.";
 
 if (currentScore >= 3) {
     rules.innerText= "You won!";
@@ -141,16 +148,9 @@ if (currentScore >= 3) {
 else {
     rules.innerText="You lose!";
 }
-
-
     }
 
 
-var scoreButton = document.createElement("button");
-scoreButton.textContent = "Set Score";
-scoreButton.setAttribute('class', 'btn btn-secondary');
-setScore.appendChild(scoreButton);
-scoreButton.addEventListener("click", toHighScores);
 
     //high scores
 function toHighScores (){
