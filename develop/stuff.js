@@ -81,7 +81,10 @@ function quizTimer() {
             
 //places first question on page and will loop through the rest of them, once answered.
 function placeQuestion () {
-    quizTimer();
+    if (questionNumber === 0) {
+        quizTimer();
+    }
+  
     rules.textContent = "";
     questionHere.innerHTML = questionArray[questionNumber].question;
 
@@ -138,8 +141,9 @@ function checkAnswers (event) {
 //add function to relay message that game is over, and what your score is out of 5. 
 
     function endGame() {
+        
         clearInterval(timerSet);
-        counter.textContent = "";
+        counter = 30;
 scoreCounter.innerHTML= "You got " + currentScore + " correct.";
 
 if (currentScore >= 3) {
