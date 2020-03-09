@@ -73,11 +73,12 @@ function quizTimer() {
       if (counter === 0) {
         endGame();
       };
-    },2000)
+    }, 1000)
 };   
             
 //places first question on page and will loop through the rest of them, once answered.
 function placeQuestion () {
+    startButton.style.visibility = "hidden";
     if (questionNumber === 0) {
         quizTimer();
     }
@@ -100,13 +101,13 @@ function placeQuestion () {
 function checkAnswers (event) {
     //targeting the text of the button
         var userSelect = event.target.innerText;
-        var correctAnswer = questionArray[questionNumber].correctAnswer
+        var correctAnswer = questionArray[questionNumber].correctAnswer;
     
         if (userSelect === correctAnswer)
         {
             rules.textContent = "Correct!";
             currentScore++;
-            counter += 10;
+            counter += 5;
         }
     
         else {
@@ -121,7 +122,6 @@ function checkAnswers (event) {
     answerButtons.innerHTML = "";
 
     if (questionNumber == 5) {
-        //need to define endGame() function
         endGame();
     }
     else{
@@ -131,7 +131,7 @@ function checkAnswers (event) {
 
     }
 
-//add function to relay message that game is over, and what your score is out of 5. 
+//function to relay message that game is over, and what your score is out of 5. 
     function endGame() { 
         clearInterval(timerSet);
         counter = 30;
